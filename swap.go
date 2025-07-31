@@ -4,6 +4,6 @@ func Swap(a *int, b *int) {
 	c := *a
 	d := *b
 
-	*a = c
-	*b = d
+	*a = d
+	*b = c
 }
