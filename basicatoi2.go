@@ -6,7 +6,7 @@ func BasicAtoi2(s string) int {
 		if !(i >= '0' && i <= '9') {
 			return 0
 		} else {
-			x += x*10 + int(i-'0')
+			x = x*10 + int(i-'0')
 		}
 	}
 	return x
