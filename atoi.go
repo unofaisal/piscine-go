@@ -5,7 +5,8 @@ package piscine
 func Atoi(s string) int {
   var f int
   sign := 1
-
+  if !(len(s) == 0) {
+    
   if s[0] == '-'{
     sign = -1
     s = s[1:]
@@ -22,5 +23,6 @@ func Atoi(s string) int {
     // fmt.Println((v - '0'))
       f = f*10 + int(v - '0')
   }
+  } 
    return f*sign
 }
