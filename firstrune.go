@@ -8,5 +8,5 @@ func FirstRune(s string) rune {
       x = c
     }
   }
-  return c
+  return x
 }
