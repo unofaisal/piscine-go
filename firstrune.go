@@ -1,5 +1,12 @@
 package piscine
 
 func FirstRune(s string) rune {
-  return rune(s[0])
+  r := []rune(s)
+  x := ''
+  for i, c := range r {
+    if i = 0 {
+      x = c
+    }
+  }
+  return c
 }
