@@ -1,5 +1,4 @@
 package piscine
-import "fmt"
 
 func Capitalize(s string) string {
  r := []rune(s)
