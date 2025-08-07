@@ -13,11 +13,14 @@ func PrintNbrInOrder(n int) {
 		n /= 10
 
 	}
-	for idx, nb := range s {
-		if idx < len(s)-1 && nb > s[idx+1] {
-			s[idx], s[idx+1] = s[idx+1], s[idx]
+	for range s {
+		for idx, nb := range s {
+			if idx < len(s)-1 && nb > s[idx+1] {
+				s[idx], s[idx+1] = s[idx+1], s[idx]
+			}
 		}
 	}
+
 	for _, c := range s {
 		z01.PrintRune(c)
 	}
