@@ -15,10 +15,12 @@ func main() {
 			}
 		}
 	}
-	for _, c := range args {
-		for _, y := range c {
-			z01.PrintRune(y)
+	for i, c := range args {
+		if i != 0 {
+			for _, y := range c {
+				z01.PrintRune(y)
+			}
+			z01.PrintRune('\n')
 		}
-		z01.PrintRune('\n')
 	}
 }
