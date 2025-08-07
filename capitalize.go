@@ -9,7 +9,7 @@ func Capitalize(s string) string {
        if r[i+1] >= 'a' && r[i+1] <= 'z' {
          r[i+1] = 'A' + r[i + 1] - 'a'
        }
-       if i = 0 {
+       if i == 0 && r[0] >= 'a' && r[0] <= 'z' {
          r[0] = 'A' + r[0] - 'a'
        }
        
