@@ -10,8 +10,10 @@ func main() {
 	args := os.Args
 	progName := args[0]
 
-	for _, c := range progName {
-		z01.PrintRune(c)
+	for i, c := range progName {
+		if i > 1 {
+			z01.PrintRune(c)
+		}
 	}
 	z01.PrintRune('\n')
 }
