@@ -1,0 +1,16 @@
+package main
+
+import (
+	"os"
+
+	"github.com/01-edu/z01"
+)
+
+func main() {
+	args := os.Args
+	progName := args[0]
+
+	for _, c := range progName {
+		z01.PrintRune(c)
+	}
+}
