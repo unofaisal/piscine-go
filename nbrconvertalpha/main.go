@@ -8,9 +8,24 @@ import (
 
 func main() {
 	args := os.Args
-	for _, c := range args {
-		for _, y := range c {
-			z01.PrintRune(rune('a' + int(y)))
+	for i, j := range args {
+		init := 0
+		if i != 0 {
+			for _, y := range j {
+				w := int(y - '0')
+				init = init*10 + w
+
+			}
+			if 'a'+init-1 <= 'z' || 'A'+init-1 <= 'Z' {
+				if args[1] == "--upper" {
+					z01.PrintRune(rune('A' + init - 1))
+				} else {
+					z01.PrintRune(rune('a' + init - 1))
+				}
+			} else {
+				z01.PrintRune(' ')
+			}
+
 		}
 	}
 }
