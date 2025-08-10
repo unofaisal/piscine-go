@@ -1,6 +1,6 @@
 package piscine
 
-func PrintNbrBase(nbr int, base string) {
+func PrintNbrBase(nbr int, base string) []int {
 	r := []rune(string)
 	pos := []int{}
 
