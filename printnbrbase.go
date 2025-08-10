@@ -20,6 +20,5 @@ func PrintNbrBase(nbr int, base string) {
 	for i := len(pos) - 1; i >= 0; i-- {
 		outPut += r[i]
 	}
-	return output
-
+	return outPut
 }
