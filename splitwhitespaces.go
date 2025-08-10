@@ -13,9 +13,10 @@ func SplitWhiteSpaces(s string) []string {
 			word = ""
 
 		}
-		if i == len(s)-1 && word[:len(word)] != ' ' || word[:len(word)] != '	' || word[:len(word)] != '\n'  {
-			sl = append(sl, word[:len(word)])
-		}
+		if i == len(s)-1 && word[:] != ' ' || word[:] != '	' || word[:] != '\n' {
++			sl = append(sl, word[:])
+ 		}
 	}
 	return sl
+
 }
