@@ -14,7 +14,7 @@ func SplitWhiteSpaces(s string) []string {
 
 		}
 		if i == len(s)-1 && word[:] != ' ' || word[:] != '	' || word[:] != '\n' {
-+			sl = append(sl, word[:])
+			sl = append(sl, word[:])
  		}
 	}
 	return sl
