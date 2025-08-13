@@ -1,8 +1,4 @@
-package main
-
 import (
-	"fmt"
-
 	"github.com/01-edu/z01"
 )
 
@@ -42,8 +38,6 @@ func main() {
 	points := &point{}
 
 	setPoint(points)
-
-	fmt.Printf("x = %d, y = %d\n", points.x, points.y)
 	printStr("x = ")
 	printStr(itoa(points.x))
 	printStr(", y = ")
