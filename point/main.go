@@ -1,8 +1,6 @@
 package main
 
-import (
-	"github.com/01-edu/z01"
-)
+import "github.com/01-edu/z01"
 
 type point struct {
 	x int
@@ -20,29 +18,24 @@ func printStr(s string) {
 	}
 }
 
-func itoa(n int) string {
-	if n == 0 {
-		return "0"
-	}
+func printNbr(n int) {
 	if n < 0 {
-		return "-" + itoa(-n)
+		z01.PrintRune('-')
+		n = -n
 	}
-	digits := ""
-	for n > 0 {
-		d := n % 10
-		digits = string('0'+d) + digits
-		n /= 10
+	if n >= 10 {
+		printNbr(n / 10)
 	}
-	return digits
+	z01.PrintRune(rune(n%10 + '0'))
 }
 
 func main() {
 	points := &point{}
-
 	setPoint(points)
+
 	printStr("x = ")
-	printStr(itoa(points.x))
+	printNbr(points.x)
 	printStr(", y = ")
-	printStr(itoa(points.y))
-	printStr("\n")
+	printNbr(points.y)
+	z01.PrintRune('\n')
 }
