@@ -1,27 +1,28 @@
 package piscine
 
 func IsSorted(f func(a, b int) int, a []int) bool {
-	isSort := false
+	asce := true
+	desc := true
 	for ind, in := range a {
 		if ind < len(a)-1 {
-			if f(in, a[ind+1]) == 1 {
-				return false
-			} else if f(in, a[ind+1]) == 0 {
-				isSort = true
-			} else {
-				isSort = true
+			sortR := f(in, a[ind+1])
+			if sortR < 0 {
+				desc = false
+			}
+			if sortR > 0 {
+				asce = false
 			}
 		}
 	}
-	return isSort
+	return asce || desc
 }
 
 // func gtLt(a, b int) int {
 // 	if a > b {
 // 		return 1
 // 	} else if a < b {
-// 		return 0
-// 	} else {
 // 		return -1
+// 	} else {
+// 		return 0
 // 	}
 // }
