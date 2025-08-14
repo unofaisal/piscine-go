@@ -1,113 +1,127 @@
 package main
 
 import (
-	"fmt"
 	"os"
-	"strconv"
 )
+
+func isNumeric(s string) bool {
+	if len(s) == 0 {
+		return false
+	}
+	for i, r := range s {
+		if i == 0 && r == '-' {
+			continue
+		}
+		if r < '0' || r > '9' {
+			return false
+		}
+	}
+	return true
+}
+
+func atoi(s string) (int64, bool) {
+	if !isNumeric(s) || len(s) > 19 {
+		return 0, false
+	}
+	neg := false
+	start := 0
+	if s[0] == '-' {
+		neg = true
+		start = 1
+	}
+	var result int64
+	for i := start; i < len(s); i++ {
+		d := int64(s[i] - '0')
+		if result > (9223372036854775807-d)/10 {
+			return 0, false
+		}
+		result = result*10 + d
+	}
+	if neg {
+		result = -result
+	}
+	return result, true
+}
+
+func printStr(s string) {
+	os.Stdout.Write([]byte(s))
+	os.Stdout.Write([]byte{'\n'})
+}
+
+func printNum(n int64) {
+	if n == 0 {
+		os.Stdout.Write([]byte("0\n"))
+		return
+	}
+
+	buf := []byte{}
+	neg := false
+	if n < 0 {
+		neg = true
+		n = -n
+	}
+	for n > 0 {
+		buf = append([]byte{byte(n%10) + '0'}, buf...)
+		n /= 10
+	}
+	if neg {
+		buf = append([]byte{'-'}, buf...)
+	}
+	buf = append(buf, '\n')
+	os.Stdout.Write(buf)
+}
 
 func main() {
 	if len(os.Args) != 4 {
 		return
 	}
 
-	a, err1 := strconv.ParseInt(os.Args[1], 10, 64)
-	opp := os.Args[2]
-	b, err2 := strconv.ParseInt(os.Args[3], 10, 64)
+	arg1 := os.Args[1]
+	op := os.Args[2]
+	arg2 := os.Args[3]
 
-	if err1 != nil || err2 != nil {
-		return // invalid number, no output
+	if len(op) != 1 || (op != "+" && op != "-" && op != "*" && op != "/" && op != "%") {
+		return
 	}
 
-	switch opp {
-	case "/":
-		if b == 0 {
-			fmt.Println("No division by 0")
+	num1, ok1 := atoi(arg1)
+	num2, ok2 := atoi(arg2)
+
+	if !ok1 || !ok2 {
+		return
+	}
+
+	switch op {
+	case "+":
+		if num1 > 0 && num2 > 0 && num1 > (9223372036854775807-num2) ||
+			num1 < 0 && num2 < 0 && num1 < (-9223372036854775808-num2) {
 			return
 		}
-	case "%":
-		if b == 0 {
-			fmt.Println("No modulo by 0")
+		printNum(num1 + num2)
+	case "-":
+		if num1 > 0 && num2 < 0 && num1 > (9223372036854775807+num2) ||
+			num1 < 0 && num2 > 0 && num1 < (-9223372036854775808+num2) {
 			return
 		}
-	}
-
-	if !checkOverFlow(a, b, opp) {
-		return // overflow or invalid op, no output
-	}
-
-	switch opp {
-	case "+":
-		fmt.Println(a + b)
-	case "-":
-		fmt.Println(a - b)
+		printNum(num1 - num2)
 	case "*":
-		fmt.Println(a * b)
+		if num1 != 0 && num2 != 0 &&
+			(num1 > 9223372036854775807/num2 ||
+				num1 < -9223372036854775808/num2) {
+			return
+		}
+		printNum(num1 * num2)
 	case "/":
-		fmt.Println(a / b)
+		if num2 == 0 {
+			printStr("No division by 0")
+			return
+		}
+		printNum(num1 / num2)
 	case "%":
-		fmt.Println(a % b)
-	}
-}
-
-func checkOverFlow(a, b int64, opp string) bool {
-	const MaxInt64 = 9223372036854775807
-	const MinInt64 = -9223372036854775808
-
-	switch opp {
-	case "+":
-		if b > 0 && a > MaxInt64-b {
-			return false
+		if num2 == 0 {
+			printStr("No modulo by 0")
+			return
 		}
-		if b < 0 && a < MinInt64-b {
-			return false
-		}
-		return true
-	case "-":
-		if b < 0 && a > MaxInt64+b {
-			return false
-		}
-		if b > 0 && a < MinInt64+b {
-			return false
-		}
-		return true
-	case "*":
-		if a == 0 || b == 0 {
-			return true
-		}
-		if (a == -1 && b == MinInt64) || (b == -1 && a == MinInt64) {
-			return false
-		}
-		if a > 0 {
-			if b > 0 && a > MaxInt64/b {
-				return false
-			}
-			if b < 0 && b < MinInt64/a {
-				return false
-			}
-		} else {
-			if b > 0 && a < MinInt64/b {
-				return false
-			}
-			if b < 0 && a < MaxInt64/b {
-				return false
-			}
-		}
-		return true
-	case "/":
-		if b == 0 {
-			return false
-		}
-		if a == MinInt64 && b == -1 {
-			return false
-		}
-		return true
-	case "%":
-		if b == 0 {
-			return false
-		}
-		return true
-	default:
-		return false
+		printNum(num1 % num2)
 	}
 }
