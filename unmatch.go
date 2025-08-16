@@ -8,7 +8,7 @@ func Unmatch(a []int) int {
 	}
 	n := 0
 	for key, val := range mp {
-		if val%2 > 0 {
+		if val == 1 || val%2 > 0 {
 			n = key
 		}
 	}
