@@ -12,6 +12,9 @@ func ShoppingSummaryCounter(str string) map[string]int {
 		} else {
 			count[item]++
 			item = ""
+			if i == len(str)-1 {
+				count[""]++
+			}
 		}
 	}
 	return count
