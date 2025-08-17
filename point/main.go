@@ -15,12 +15,21 @@ func printCh(str string) {
 	}
 }
 
-func ita(in int) string {
-	str := ""
-	for i := in; i > 0; i /= 10 {
-		str = string('0'+(i%10)) + str
+func printInt(n int) {
+	first := n / 10
+	second := n % 10
+
+	digit1 := '0'
+	for i := 0; i < first; i++ {
+		digit1++
 	}
-	return str
+	z01.PrintRune(digit1)
+
+	digit2 := '0'
+	for i := 0; i < second; i++ {
+		digit2++
+	}
+	z01.PrintRune(digit2)
 }
 
 func setPoint(ptr *point) {
@@ -33,11 +42,9 @@ func main() {
 
 	setPoint(points)
 	printCh("x = ")
-	xV := ita(points.x)
-	printCh(xV + ", ")
-	printCh("y = ")
-	yV := ita(points.y)
-	printCh(yV)
+	printInt(points.x)
+	printCh(", y = ")
+	printInt(points.y)
 	z01.PrintRune('\n')
 
 	// fmt.Printf("x = %d, y = %d\n", points.x, points.y)
