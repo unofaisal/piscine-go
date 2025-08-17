@@ -22,7 +22,7 @@ func LoafOfBread(str string) string {
 			// fmt.Println(i+1, i+1%5)
 		}
 	}
-	if nS[len(nS)-1] == ' ' {
+	if len(nS) > 0 && nS[len(nS)-1] == ' ' {
 		return nS[:len(nS)-1] + "\n"
 	}
 	return nS + "\n"
