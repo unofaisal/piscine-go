@@ -14,13 +14,16 @@ func LoafOfBread(str string) string {
 		if str[i] > ' ' && str[i] <= '~' {
 			nS += string(str[i])
 			counter++
-			if i != len(str)-1 && counter%5 == 0 {
+			if counter%5 == 0 {
 				i++
 				nS += " "
 			}
 
 			// fmt.Println(i+1, i+1%5)
 		}
+	}
+	if nS[len(nS)-1] == ' ' {
+		return nS[:len(nS)-1] + "\n"
 	}
 	return nS + "\n"
 }
