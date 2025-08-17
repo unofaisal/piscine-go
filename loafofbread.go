@@ -11,7 +11,7 @@ func LoafOfBread(str string) string {
 		if str[i] > ' ' && str[i] <= '~' {
 			nS += string(str[i])
 			counter++
-			if counter%5 == 0 {
+			if i != len(str)-1 && counter%5 == 0 {
 				i++
 				nS += " "
 			}
