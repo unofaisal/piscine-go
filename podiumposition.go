@@ -1,15 +1,8 @@
 package piscine
 
 func PodiumPosition(podium [][]string) [][]string {
-	if len(podium) == 0 {
-		return podium
-	}
-	for range podium {
-		for i, no := range podium {
-			if i+1 < len(podium) && no[0][0] > podium[i+1][0][0] {
-				podium[i], podium[i+1] = podium[i+1], podium[i]
-			}
-		}
+	for i, j := 0, len(podium)-1; i < j; i, j = i+1, j-1 {
+		podium[i], podium[j] = podium[j], podium[i]
 	}
 	return podium
 }
