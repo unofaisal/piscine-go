@@ -7,10 +7,10 @@ import "fmt"
 func DealAPackOfCards(deck []int) {
 	for i := 1; i <= 3; {
 		fmt.Printf("Player %v: ", i)
-		for x := 1; x <= len(deck); x++ {
+		for x := 1; x <= 12; x++ {
 			fmt.Printf("%v", x)
 
-			if x != len(deck) {
+			if x != 12 {
 				if x%3 == 0 {
 					i++
 					fmt.Printf("\n")
