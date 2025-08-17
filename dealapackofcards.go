@@ -2,29 +2,24 @@ package piscine
 
 import "fmt"
 
+// 12 cards / 4 pple
+
 func DealAPackOfCards(deck []int) {
-	mp := make(map[int][]int)
-	i := 0
-	x := 1
-	for i <= len(deck)-1 {
+	for i := 1; i <= 3; {
+		fmt.Printf("Player %v: ", i)
+		for x := 1; x <= len(deck); x++ {
+			fmt.Printf("%v", x)
 
-		// fmt.Printf("hello Player %v: %v", x, mp[x])
-		if i >= 2 && i%3 == 0 {
-			x++
-		}
-		mp[x] = append(mp[x], deck[i])
-		i++
-	}
-	for k, v := range mp {
-
-		fmt.Printf("Player %v:", k)
-		for i, in := range v {
-			fmt.Printf(" %v", in)
-			if i < len(v)-1 {
-				fmt.Printf(",")
+			if x != len(deck) {
+				if x%3 == 0 {
+					i++
+					fmt.Printf("\n")
+					fmt.Printf("Player %v: ", i)
+				} else {
+					fmt.Printf(", ")
+				}
 			}
 		}
-		fmt.Printf("\n")
-
 	}
+	fmt.Printf("\n")
 }
