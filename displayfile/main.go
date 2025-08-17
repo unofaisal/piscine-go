@@ -9,9 +9,11 @@ func main() {
 	args := os.Args[1:]
 	if len(args) == 0 {
 		fmt.Print("File name missing\n")
+		return
 	}
 	if len(args) > 1 {
 		fmt.Print("Too many arguments\n")
+		return
 	}
 	fName := args[0]
 	file, err := os.Open(fName)
