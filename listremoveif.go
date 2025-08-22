@@ -1,9 +1,5 @@
 package piscine
 
-func CompStr(a, b interface{}) bool {
-	return a == b
-}
-
 func ListRemoveIf(l *List, data_ref interface{}) {
 	var prev *NodeL
 	cur := l.Head
