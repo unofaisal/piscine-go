@@ -1,5 +1,5 @@
 package piscine
-
+// 
 func Abort(a, b, c, d, e int) int {
 	sl := []int{a, b, c, d, e}
 	for range sl {
